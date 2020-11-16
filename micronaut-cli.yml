@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: demo
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle
+features: [app-name, gradle, java, java-application, junit, oracle-function, oracle-function-http, readme, shade, slf4j-simple, yaml]

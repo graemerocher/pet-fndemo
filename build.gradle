@@ -1,0 +1,51 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "io.micronaut.application" version '1.0.5'
+}
+
+version "0.1"
+group "demo"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+micronaut {
+    runtime "netty"
+    testRuntime "junit5"
+    processing {
+        incremental true
+        annotations "demo.*"
+    }
+}
+
+dependencies {
+    implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut:micronaut-runtime")
+    runtimeOnly("org.slf4j:slf4j-simple")
+    testImplementation("io.micronaut:micronaut-http-client")
+}
+
+mainClassName = "demo.Application"
+java {
+    sourceCompatibility = JavaVersion.toVersion('1.8')
+    targetCompatibility = JavaVersion.toVersion('1.8')
+}
+
+
+dockerfileNative {
+  args('-XX:MaximumHeapSizePercent=80')
+}
+nativeImage {
+    args("--initialize-at-build-time=demo")
+}
+//dockerBuild {
+//    images = ["us-ashburn-1.ocir.io/cloudnative-devrel/graeme/$project.name:$project.version"]
+//}
+//
+//dockerBuildNative {
+//    images = ["us-ashburn-1.ocir.io/cloudnative-devrel/graeme/$project.name-native:$project.version"]
+//}
+
+
