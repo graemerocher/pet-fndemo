@@ -12,7 +12,7 @@ repositories {
 }
 
 micronaut {
-    runtime "netty"
+    runtime "oracle_function"
     testRuntime "junit5"
     processing {
         incremental true
@@ -40,12 +40,12 @@ dockerfileNative {
 nativeImage {
     args("--initialize-at-build-time=demo")
 }
-//dockerBuild {
-//    images = ["us-ashburn-1.ocir.io/cloudnative-devrel/graeme/$project.name:$project.version"]
-//}
-//
-//dockerBuildNative {
-//    images = ["us-ashburn-1.ocir.io/cloudnative-devrel/graeme/$project.name-native:$project.version"]
-//}
+dockerBuild {
+   images = ["us-ashburn-1.ocir.io/cloudnative-devrel/graeme/$project.name:$project.version"]
+}
+
+dockerBuildNative {
+   images = ["us-ashburn-1.ocir.io/cloudnative-devrel/graeme/$project.name-native:$project.version"]
+}
 
 
